@@ -1,4 +1,4 @@
-**Create an Activate a virtual environment**
+**Create and Activate a virtual environment**
 ```
 virtualenv venv
 venv\Scripts\activate
