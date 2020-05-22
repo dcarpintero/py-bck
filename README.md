@@ -1,16 +1,19 @@
-**Create and Activate a virtual environment**
+## PY-BCK
+A naive blockchain implementation in Python
+
+## Create and Activate a virtual environment
 ```
 virtualenv venv
 venv\Scripts\activate
 source venv/bin/activate
 ```
 
-**Install dependencies**
+## Install dependencies
 ```
 pip install -r requirements.txt
 ```
 
-**Run tests**
+## Run tests
 ```
 python -m pytest
 ```
