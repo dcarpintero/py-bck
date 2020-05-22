@@ -29,7 +29,7 @@ class Block:
         self.hash = self.compute_hash()
 
     def compute_hash(self):
-        return bck_math.hash(self.to_json())
+        return bck_math.double_hash(self.to_json())
 
     def to_json(self):
         return json.dumps(self.__dict__,
