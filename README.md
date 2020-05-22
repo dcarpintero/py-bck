@@ -1,2 +1,16 @@
-# py-bck
-A naive blockchain implementation in Python
+**Create an Activate a virtual environment**
+```
+virtualenv venv
+venv\Scripts\activate
+source venv/bin/activate
+```
+
+**Install dependencies**
+```
+pip install -r requirements.txt
+```
+
+**Run tests**
+```
+python -m pytest
+```
