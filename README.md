@@ -12,7 +12,7 @@ Each block is identified by a hash, generated using the SHA256 algorithm on its 
 
 [![Build Status](https://travis-ci.com/dcarpintero/py-bck.svg?branch=master)](https://travis-ci.com/github/dcarpintero/py-bck)
 [![codecov](https://codecov.io/gh/dcarpintero/py-bck/branch/master/graph/badge.svg)](https://codecov.io/gh/dcarpintero/py-bck)
-[![CodeFactor](https://www.codefactor.io/repository/github/dcarpintero/py-bck/badge)](https://www.codefactor.io/repository/github/dcarpintero/py-bck)
+[![CodeFactor](https://img.shields.io/codefactor/grade/github/dcarpintero/py-bck)](https://img.shields.io/codefactor/grade/github/dcarpintero/py-bck)
 [![License](https://img.shields.io/github/license/dcarpintero/py-bck)](https://github.com/dcarpintero/py-bck/blob/master/LICENSE)
 
 
