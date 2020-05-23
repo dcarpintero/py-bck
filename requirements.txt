@@ -1,5 +1,7 @@
 pyyaml==5.3.1
 pytest==5.4.2
+pytest-cov==2.9.0
+codecov==2.3.1
 jsonschema==3.2.0
 flask==1.1.2
 pubnub==4.5.1
