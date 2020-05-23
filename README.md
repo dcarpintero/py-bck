@@ -11,7 +11,9 @@ Each block contains the following metadata:
 * a unique answer to a difficult-to-solve mathematical puzzle
 * a cryptographic hash of the block metadata
 
-(https://travis-ci.com/dcarpintero/py-bck.svg?branch=master)
+[![Build Status](https://travis-ci.com/dcarpintero/py-bck.svg?branch=master)](https://travis-ci.com/github/dcarpintero/py-bck)
+[![License](https://img.shields.io/github/license/dcarpintero/py-bck)](https://github.com/dcarpintero/py-bck/blob/master/LICENSE)
+
 
 
 ## Jupyter Notebook
