@@ -4,16 +4,16 @@ A naive blockchain implementation in Python. Consensus is based on proof-of-work
 [Hashcash](http://www.hashcash.org/hashcash.pdf "Hashcash - A Denial of Service Counter-Measure; A. Back; 2002") implementations.
 
 Each block is identified by a hash, generated using the SHA256 algorithm on its block header which consists of the following metadata:
-* its position in the blockchain (height)
-* a reference to the hash of the previous (parent) block in the chain
-* a cryptographic hash of the root of the Merkle-Tree
-* the approximate creation time of the block (seconds from Unix Epoch)
-* a unique answer to a difficult-to-solve mathematical puzzle (CPU cost function)
+* its position in the blockchain (height).
+* a reference to the hash of the previous (parent) block in the chain.
+* a cryptographic hash of the root of the Merkle-Tree.
+* the approximate creation time of the block (seconds from Unix Epoch).
+* a unique answer to a difficult-to-solve mathematical puzzle (CPU cost function).
 
 [![Build Status](https://travis-ci.com/dcarpintero/py-bck.svg?branch=master)](https://travis-ci.com/github/dcarpintero/py-bck)
-[![License](https://img.shields.io/github/license/dcarpintero/py-bck)](https://github.com/dcarpintero/py-bck/blob/master/LICENSE)
 [![codecov](https://codecov.io/gh/dcarpintero/py-bck/branch/master/graph/badge.svg)](https://codecov.io/gh/dcarpintero/py-bck)
-
+[![CodeFactor](https://www.codefactor.io/repository/github/dcarpintero/py-bck/badge)](https://www.codefactor.io/repository/github/dcarpintero/py-bck)
+[![License](https://img.shields.io/github/license/dcarpintero/py-bck)](https://github.com/dcarpintero/py-bck/blob/master/LICENSE)
 
 
 ## Jupyter Notebook
