@@ -3,16 +3,16 @@ import random as rand
 import datetime as date
 
 
-def hash(data):
+def compute_hash(data):
     return sha256(data.encode('utf-8')).hexdigest()
 
 
-def double_hash(data):
-    return hash(hash(data))
+def compute_double_hash(data):
+    return compute_hash(compute_hash(data))
 
 
 def compute_hash_merkle(data):
-    return hash(data)
+    return compute_hash(data)
 
 
 def compute_nonce(length=20):

@@ -8,7 +8,7 @@ from jsonschema import validate
 def test_block():
     block = Block(height=1,
                   data="I'm a mock block",
-                  previous_hash=bck_math.hash('previous block'),
+                  previous_hash=bck_math.compute_hash('previous block'),
                   difficulty=1,
                   nonce=bck_math.compute_nonce())
     assert isinstance(block, Block)
@@ -21,7 +21,7 @@ def test_block_to_json():
 
     block = Block(height=1,
                   data="I'm a mock block",
-                  previous_hash=bck_math.hash('previous block'),
+                  previous_hash=bck_math.compute_hash('previous block'),
                   difficulty=1,
                   nonce=bck_math.compute_nonce())
 
@@ -33,7 +33,7 @@ def test_block_to_json():
 def test_block_repr():
     block = Block(height=1,
                   data="I'm a mock block",
-                  previous_hash=bck_math.hash('previous block'),
+                  previous_hash=bck_math.compute_hash('previous block'),
                   difficulty=1,
                   nonce=bck_math.compute_nonce())
     assert block.to_json() == block.__repr__()

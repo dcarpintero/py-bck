@@ -19,7 +19,7 @@ class Transaction:
         self.txid = self.compute_hash()
 
     def compute_hash(self):
-        return bck_math.double_hash(self.to_json())
+        return bck_math.compute_double_hash(self.to_json())
 
     def to_json(self):
         return json.dumps(self.__dict__, sort_keys=True, indent=2)
