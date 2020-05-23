@@ -33,7 +33,7 @@ class Node:
 
         hashes_tried = 1
         proof = block.compute_hash()
-        while int(proof, 16) > chain.difficulty_target:
+        while int(proof, base=16) > chain.difficulty_target:
             block.nonce = bck_math.compute_nonce()
             proof = block.compute_hash()
             hashes_tried += 1
