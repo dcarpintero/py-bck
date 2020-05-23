@@ -4,14 +4,14 @@ A naive blockchain implementation in Python. Consensus is based on proof-of-work
 [Hashcash](http://www.hashcash.org/hashcash.pdf "Hashcash - A Denial of Service Counter-Measure; A. Back; 2002") implementations.
 
 Each block contains the following metadata:
-        - its position in the blockchain
-        - a reference to the hash of the previous (parent) block in the chain
-        - a cryptographic hash of the root of the Merkle-Tree of transactions
-        - the approximate creation time of the block (seconds from Unix Epoch)
-        - a unique answer to a difficult-to-solve mathematical puzzle
-        - a cryptographic hash of the block metadata
+* its position in the blockchain
+* a reference to the hash of the previous (parent) block in the chain
+* a cryptographic hash of the root of the Merkle-Tree of transactions
+* the approximate creation time of the block (seconds from Unix Epoch)
+* a unique answer to a difficult-to-solve mathematical puzzle
+* a cryptographic hash of the block metadata
 
-https://travis-ci.com/dcarpintero/py-bck.svg?branch=master
+(https://travis-ci.com/dcarpintero/py-bck.svg?branch=master)
 
 
 ## Jupyter Notebook
