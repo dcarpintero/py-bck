@@ -1,6 +1,6 @@
 import json
 
-from backend.node import Node
+from backend.core.node import Node
 from jsonschema import validate
 
 

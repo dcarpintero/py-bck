@@ -1,4 +1,4 @@
-from backend.blockchain import Blockchain
+from backend.core.blockchain import Blockchain
 
 
 def main():

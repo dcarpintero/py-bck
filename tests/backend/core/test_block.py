@@ -1,7 +1,7 @@
 import json
 import backend.util.bck_math as bck_math
 
-from backend.block import Block
+from backend.core.block import Block
 from jsonschema import validate
 
 

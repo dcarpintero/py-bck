@@ -1,4 +1,4 @@
-from backend.transaction import Transaction
+from backend.core.transaction import Transaction
 
 
 def test_transaction():

@@ -3,7 +3,7 @@ import time
 import backend.util.bck_math as bck_math
 import backend.util.bck_logging as bck_logging
 
-from backend.block import Block
+from backend.core.block import Block
 
 LOGGER = bck_logging.init("dev")
 
