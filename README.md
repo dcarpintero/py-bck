@@ -10,10 +10,10 @@ Each block is identified by a hash, generated using the SHA256 algorithm on its 
 * the approximate creation time of the block (seconds from Unix Epoch).
 * a unique answer to a difficult-to-solve mathematical puzzle (CPU cost function).
 
-[![Build Status](https://travis-ci.com/dcarpintero/py-bck.svg?branch=master)](https://travis-ci.com/github/dcarpintero/py-bck)
-[![codecov](https://codecov.io/gh/dcarpintero/py-bck/branch/master/graph/badge.svg)](https://codecov.io/gh/dcarpintero/py-bck)
+[![Build Status](https://travis-ci.com/dcarpintero/py-bck.svg?branch=dev)](https://travis-ci.com/github/dcarpintero/py-bck)
+[![codecov](https://codecov.io/gh/dcarpintero/py-bck/branch/dev/graph/badge.svg)](https://codecov.io/gh/dcarpintero/py-bck)
 [![CodeFactor](https://img.shields.io/codefactor/grade/github/dcarpintero/py-bck)](https://www.codefactor.io/repository/github/dcarpintero/py-bck)
-[![Known Vulnerabilities](https://snyk.io/test/github/dcarpintero/py-bck/badge.svg?targetFile=requirements.txt)](https://snyk.io/test/github/dcarpintero/py-bck?targetFile=requirements.txt)
+[![Known Vulnerabilities](https://snyk.io/test/github/dcarpintero/py-bck/badge.svg?targetFile=requirements.txt)](https://snyk.io/test/github/dcarpintero/py-bck)
 [![License](https://img.shields.io/github/license/dcarpintero/py-bck)](https://github.com/dcarpintero/py-bck/blob/master/LICENSE)
 
 ## Jupyter Notebook
