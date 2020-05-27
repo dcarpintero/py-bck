@@ -2,8 +2,8 @@ import random as rand
 import backend.util.bck_math as bck_math
 import backend.util.bck_logging as bck_logging
 
-from backend.block import Block
-from backend.node import Node
+from backend.core.block import Block
+from backend.core.node import Node
 
 LOGGER = bck_logging.init("dev")
 
