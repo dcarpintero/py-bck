@@ -9,7 +9,8 @@ LOGGER = bck_logging.init("dev")
 
 class Blockchain:
     """
-    Blockchain: An ordered back-linked list of blocks.
+    Blockchain: An ordered back-linked list of blocks
+    starting with the genesis block at the root.
     """
 
     def __init__(self, difficulty=1):
