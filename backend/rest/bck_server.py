@@ -1,6 +1,5 @@
 from flask import Flask
 from backend.core.blockchain import Blockchain
-import backend.util.bck_math as bck_math
 import json
 
 app = Flask(__name__)
@@ -15,26 +14,20 @@ blk.add_node("Wei", 8)
 
 blk.mine_genesis()
 
-num_blocks = 5
-for _ in range(0, num_blocks):
-    blk.mine_block()
-
-
-@app.route('/tx', methods=['POST'])
-def post_tx():
-    return "Success", 201
-
-
-@app.route('/node', methods=['POST'])
-def post_node():
-    return "Success", 201
-
 
 @app.route('/blocks', methods=['GET'])
 def get_blocks():
-    return json.dumps([block.__dict__ for block in blk.blocks],
-                      default=bck_math.block_converter,
-                      indent=2)
+    return json.dumps([block.__dict__ for block in blk.blocks], indent=2)
+
+
+@app.route('/block/<height>', methods=['GET'])
+def get_block(height):
+    height = int(height)
+
+    if (height >= 0 and height < blk.len):
+        return blk.blocks[height].to_json()
+    else:
+        return "INVALID_BLOCK_HEIGHT", 400
 
 
 @app.route('/mempool', methods=['GET'])
@@ -45,6 +38,22 @@ def get_mempool():
 @app.route('/nodes', methods=['GET'])
 def get_nodes():
     return json.dumps([node.__dict__ for node in blk.nodes], indent=2)
+
+
+@app.route('/mine', methods=['POST'])
+def post_mine():
+    block = blk.mine_block()
+    return block.to_json(), 201
+
+
+@app.route('/tx', methods=['POST'])
+def post_tx():
+    return "NOT_IMPLEMENTED", 501
+
+
+@app.route('/node', methods=['POST'])
+def post_node():
+    return "NOT_IMPLEMENTED", 501
 
 
 if __name__ == '__main__':
