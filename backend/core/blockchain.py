@@ -35,6 +35,10 @@ class Blockchain:
             self.blocks.append(block)
             LOGGER.info("Added Block: {}".format(block))
 
+    def mine_genesis(self):
+        if self.len == 0:
+            return self.mine_block()
+
     def mine_block(self):
         if (len(self.nodes) > 0):
             return self.winning_node().mine_block(self)
