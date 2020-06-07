@@ -1,29 +1,23 @@
-from flask import Flask
+from flask import Flask, jsonify, request
 from backend.core.blockchain import Blockchain
-import json
 
 app = Flask(__name__)
+app.config.update(
+    JSONIFY_PRETTYPRINT_REGULAR=True
+)
 
 blk = Blockchain(difficulty=3)
-
-blk.add_node("Finney", 9)
-blk.add_node("Szabo", 5)
-blk.add_node("Back", 4)
 blk.add_node("Nakamoto", 7)
-blk.add_node("Wei", 8)
-
 blk.mine_genesis()
 
 
 @app.route('/blocks', methods=['GET'])
 def get_blocks():
-    return json.dumps([block.__dict__ for block in blk.blocks], indent=2)
+    return jsonify([block.__dict__ for block in blk.blocks])
 
 
-@app.route('/block/<height>', methods=['GET'])
+@app.route('/block/<int:height>', methods=['GET'])
 def get_block(height):
-    height = int(height)
-
     if (height >= 0 and height < blk.len):
         return blk.blocks[height].to_json()
 
@@ -32,28 +26,25 @@ def get_block(height):
 
 @app.route('/mempool', methods=['GET'])
 def get_mempool():
-    return json.dumps([tx.__dict__ for tx in blk.mempool], indent=2)
+    return jsonify([tx.__dict__ for tx in blk.mempool])
 
 
 @app.route('/nodes', methods=['GET'])
 def get_nodes():
-    return json.dumps([node.__dict__ for node in blk.nodes], indent=2)
+    return jsonify([node.__dict__ for node in blk.nodes])
 
 
 @app.route('/mine', methods=['POST'])
 def post_mine():
     block = blk.mine_block()
-    return block.to_json(), 201
-
-
-@app.route('/tx', methods=['POST'])
-def post_tx():
-    return "NOT_IMPLEMENTED", 501
+    return jsonify(block.__dict__), 201
 
 
 @app.route('/node', methods=['POST'])
 def post_node():
-    return "NOT_IMPLEMENTED", 501
+    node_json = request.get_json()
+    node = blk.add_node(node_json['name'], node_json['weight'])
+    return jsonify(node.__dict__), 201
 
 
 if __name__ == '__main__':

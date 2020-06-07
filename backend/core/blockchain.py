@@ -28,7 +28,7 @@ class Blockchain:
         if weight > 0:
             self.nodes.append(Node(name, weight))
             LOGGER.info("Added Node: {}".format(self.last_node))
-            return self
+            return self.last_node
 
     def add_block(self, block, proof):
         if self.is_valid_candidate_block(block, proof):
