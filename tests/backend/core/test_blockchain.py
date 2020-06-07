@@ -10,7 +10,7 @@ def test_blockchain_instance():
 def test_blockchain_genesis():
     blockchain = Blockchain(difficulty=2)
     blockchain.add_node(name='Nakamoto', weight=10)
-    blockchain.mine_block()
+    blockchain.mine_genesis()
     assert blockchain.len == 1
 
 
@@ -32,7 +32,7 @@ def test_blockchain_mine():
     blockchain.add_node(name='Nakamoto', weight=10)
     assert blockchain.len == 0
 
-    genesis = blockchain.mine_block()
+    genesis = blockchain.mine_genesis()
     assert blockchain.len == 1
     assert blockchain.last_block.height == 0
     assert blockchain.last_block.hash_previous_block == '0' * 64

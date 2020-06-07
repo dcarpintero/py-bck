@@ -9,7 +9,8 @@ LOGGER = bck_logging.init("dev")
 
 class Blockchain:
     """
-    Blockchain: An ordered back-linked list of blocks.
+    Blockchain: An ordered back-linked list of blocks
+    starting with the genesis block at the root.
     """
 
     def __init__(self, difficulty=1):
@@ -33,6 +34,10 @@ class Blockchain:
         if self.is_valid_candidate_block(block, proof):
             self.blocks.append(block)
             LOGGER.info("Added Block: {}".format(block))
+
+    def mine_genesis(self):
+        if self.len == 0:
+            return self.mine_block()
 
     def mine_block(self):
         if (len(self.nodes) > 0):
