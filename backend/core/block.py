@@ -18,6 +18,7 @@ class Block:
         - a unique answer to a difficult-to-solve mathematical puzzle
         - a cryptographic hash of the block metadata.
     """
+
     def __init__(self, height, data, previous_hash, difficulty, nonce):
         self.height = height
         self.hash_previous_block = previous_hash
@@ -29,7 +30,10 @@ class Block:
         self.hash = self.compute_hash()
 
     def compute_hash(self):
-        return bck_math.compute_double_hash(self.to_json())
+        return bck_math.compute_double_hash(self.metadata)
+
+    def is_valid_hash(self):
+        return self.hash == self.compute_hash()
 
     def to_json(self):
         return json.dumps(self.__dict__,
@@ -39,3 +43,18 @@ class Block:
 
     def __repr__(self):
         return self.to_json()
+
+    @ property
+    def metadata(self):
+        block_metadata = {
+            'height': self.height,
+            'hash_previous_block': self.hash_previous_block,
+            'hash_merkle_root': bck_math.compute_hash_merkle(self.data),
+            'time': self.time,
+            'nonce': self.nonce
+        }
+
+        return json.dumps(block_metadata,
+                          sort_keys=True,
+                          default=bck_math.block_converter,
+                          indent=2)

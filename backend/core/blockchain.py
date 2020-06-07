@@ -12,6 +12,7 @@ class Blockchain:
     """
     Blockchain: An ordered back-linked list of blocks.
     """
+
     def __init__(self, difficulty=1):
         self.difficulty = difficulty
         self.nodes = []
@@ -52,6 +53,22 @@ class Blockchain:
         winner = indexes[0]
         return self.nodes[winner]
 
+    def is_valid(self):
+        previous_block = self.blocks[0]
+
+        for block in self.blocks:
+            if not block.is_valid_hash():
+                LOGGER.debug("Invalid block hash: '{}'".format(block.hash))
+                return False
+
+            if ((block.height > 0) and
+                    (block.previous_block_hash != previous_block.hash)):
+                return False
+
+            previous_block = block
+
+        return True
+
     def is_valid_block(self, block, proof):
         if not(proof.startswith("0" * self.difficulty)):
             LOGGER.debug("Invalid block: proof difficulty '{}' is < {}"
@@ -76,28 +93,27 @@ class Blockchain:
                                  self.last_block.height + 1))
             return False
 
-        block.hash = proof
         return True
 
-    @property
+    @ property
     def difficulty_target(self):
         return bck_math.compute_difficulty_target(self.difficulty)
 
-    @property
+    @ property
     def len(self):
         return len(self.blocks)
 
-    @property
+    @ property
     def last_block(self):
         if self.blocks:
             return self.blocks[-1]
 
-    @property
+    @ property
     def last_node(self):
         if self.nodes:
             return self.nodes[-1]
 
-    @property
+    @ property
     def last_transaction(self):
         if self.mempool:
             return self.mempool[-1]

@@ -12,6 +12,7 @@ class Node:
     """
     Node: A blockchain peer.
     """
+
     def __init__(self, name, weight):
         self.name = name
         self.weight = weight
@@ -38,6 +39,7 @@ class Node:
             proof = block.compute_hash()
             hashes_tried += 1
 
+        block.hash = proof
         time_taken = time.process_time() - start
 
         LOGGER.debug("Block:#{} - Miner:{} - Hashes Tried:{} - Mining Time:{}"
