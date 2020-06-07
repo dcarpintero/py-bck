@@ -2,7 +2,6 @@ import random as rand
 import backend.util.bck_math as bck_math
 import backend.util.bck_logging as bck_logging
 
-from backend.core.block import Block
 from backend.core.node import Node
 
 LOGGER = bck_logging.init("dev")
@@ -17,21 +16,12 @@ class Blockchain:
         self.difficulty = difficulty
         self.nodes = []
         self.mempool = []
-        self.blocks = [Block(height=0,
-                             data="Genesis Block",
-                             previous_hash=0,
-                             difficulty=0,
-                             nonce=0)]
+        self.blocks = []
 
     def add_transaction(self, transaction):
         self.mempool.append(transaction)
         LOGGER.info("Added Transaction to the Mempool: {}"
                     .format(self.last_transaction))
-
-    def add_block(self, block, proof):
-        if self.is_valid_block(block, proof):
-            self.blocks.append(block)
-            LOGGER.info("Added Block: {}".format(block))
 
     def add_node(self, name, weight):
         if weight > 0:
@@ -39,8 +29,14 @@ class Blockchain:
             LOGGER.info("Added Node: {}".format(self.last_node))
             return self
 
+    def add_block(self, block, proof):
+        if self.is_valid_candidate_block(block, proof):
+            self.blocks.append(block)
+            LOGGER.info("Added Block: {}".format(block))
+
     def mine_block(self):
-        return self.winning_node().mine_block(self)
+        if (len(self.nodes) > 0):
+            return self.winning_node().mine_block(self)
 
     def winning_node(self):
         indexes = []
@@ -69,7 +65,12 @@ class Blockchain:
 
         return True
 
-    def is_valid_block(self, block, proof):
+    def is_valid_candidate_block(self, block, proof):
+        if (self.len == 0):
+            previous_hash = '0' * 64
+        else:
+            previous_hash = self.last_block.hash
+
         if not(proof.startswith("0" * self.difficulty)):
             LOGGER.debug("Invalid block: proof difficulty '{}' is < {}"
                          .format(proof, self.difficulty))
@@ -81,16 +82,16 @@ class Blockchain:
                                  block.compute_hash()))
             return False
 
-        if block.hash_previous_block != self.last_block.hash:
-            LOGGER.debug("Invalid block: hash_previous_block '{}' != {}"
-                         .format(block.hash_previous_block,
-                                 self.last_block.hash))
-            return False
-
-        if block.height != (self.last_block.height + 1):
+        if block.height != self.len:
             LOGGER.debug("Invalid block: block height #{} != #{}"
                          .format(block.height,
-                                 self.last_block.height + 1))
+                                 self.len))
+            return False
+
+        if block.hash_previous_block != previous_hash:
+            LOGGER.debug("Invalid block: hash_previous_block '{}' != {}"
+                         .format(block.hash_previous_block,
+                                 previous_hash))
             return False
 
         return True
