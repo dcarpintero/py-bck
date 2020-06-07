@@ -50,5 +50,4 @@ class Block:
             'time': self.time,
             'nonce': self.nonce
         }
-
         return json.dumps(block_metadata, sort_keys=True, indent=2)
