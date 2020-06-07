@@ -1,6 +1,5 @@
 from hashlib import sha256
 import random as rand
-import datetime as date
 
 
 def compute_hash(data):
@@ -22,8 +21,3 @@ def compute_nonce(length=20):
 def compute_difficulty_target(difficulty):
     difficulty_str = "0x" + '0' * difficulty + 'F' * (64 - difficulty)
     return(int(difficulty_str, 16))
-
-
-def block_converter(obj):
-    if isinstance(obj, date.datetime):
-        return obj.__str__()

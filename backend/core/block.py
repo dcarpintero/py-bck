@@ -1,5 +1,5 @@
 import json
-import datetime as date
+import time
 
 import backend.util.bck_math as bck_math
 import backend.util.bck_logging as bck_logging
@@ -23,7 +23,7 @@ class Block:
         self.height = height
         self.hash_previous_block = previous_hash
         self.hash_merkle_root = bck_math.compute_hash_merkle(data)
-        self.time = date.datetime.now()
+        self.time = time.time_ns()
         self.difficulty = difficulty
         self.nonce = nonce
         self.data = data
@@ -36,10 +36,7 @@ class Block:
         return self.hash == self.compute_hash()
 
     def to_json(self):
-        return json.dumps(self.__dict__,
-                          sort_keys=True,
-                          default=bck_math.block_converter,
-                          indent=2)
+        return json.dumps(self.__dict__, sort_keys=True, indent=2)
 
     def __repr__(self):
         return self.to_json()
@@ -54,7 +51,4 @@ class Block:
             'nonce': self.nonce
         }
 
-        return json.dumps(block_metadata,
-                          sort_keys=True,
-                          default=bck_math.block_converter,
-                          indent=2)
+        return json.dumps(block_metadata, sort_keys=True, indent=2)
