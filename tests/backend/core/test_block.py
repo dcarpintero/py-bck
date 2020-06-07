@@ -25,5 +25,24 @@ def test_block_schema():
     validate(instance=block_json, schema=schema_block)
 
 
+def test_block_is_valid_hash():
+    assert block.is_valid_hash()
+
+
+def test_block_is_not_valid_if_tampered_data():
+    block.data = "I've been tampered"
+    assert not block.is_valid_hash()
+
+
+def test_block_is_not_valid_if_tampered_nonce():
+    block.hash_previous_block = '0' * 64
+    assert not block.is_valid_hash()
+
+
+def test_block_is_not_valid_if_tampered_hash():
+    block.hash_previous_hash = '0' * 64
+    assert not block.is_valid_hash()
+
+
 def test_block_repr():
     assert block.to_json() == block.__repr__()

@@ -12,14 +12,20 @@ class Node:
     """
     Node: A blockchain peer.
     """
+
     def __init__(self, name, weight):
         self.name = name
         self.weight = weight
 
     def mine_block(self, chain):
+        if (chain.len == 0):
+            previous_hash = '0' * 64
+        else:
+            previous_hash = chain.last_block.hash
+
         block = Block(height=chain.len,
                       data="Hey! I'm block #" + str(chain.len),
-                      previous_hash=chain.last_block.hash,
+                      previous_hash=previous_hash,
                       difficulty=chain.difficulty,
                       nonce=bck_math.compute_nonce())
 
@@ -38,6 +44,7 @@ class Node:
             proof = block.compute_hash()
             hashes_tried += 1
 
+        block.hash = proof
         time_taken = time.process_time() - start
 
         LOGGER.debug("Block:#{} - Miner:{} - Hashes Tried:{} - Mining Time:{}"
