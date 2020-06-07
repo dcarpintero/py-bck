@@ -26,8 +26,8 @@ def get_block(height):
 
     if (height >= 0 and height < blk.len):
         return blk.blocks[height].to_json()
-    else:
-        return "INVALID_BLOCK_HEIGHT", 400
+
+    return "INVALID_BLOCK_HEIGHT", 400
 
 
 @app.route('/mempool', methods=['GET'])
@@ -57,4 +57,4 @@ def post_node():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()
