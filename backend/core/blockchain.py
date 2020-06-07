@@ -59,11 +59,14 @@ class Blockchain:
 
         for block in self.blocks:
             if not block.is_valid_hash():
-                LOGGER.debug("Invalid block hash: '{}'".format(block.hash))
+                LOGGER.debug("Invalid block hash: '{}' in Block#{}".format(
+                    block.hash, block.height))
                 return False
 
             if ((block.height > 0) and
                     (block.previous_block_hash != previous_block.hash)):
+                LOGGER.debug("Invalid previous hash: '{}' in Block#{}".format(
+                    block.previous_block_hash, block.height))
                 return False
 
             previous_block = block
@@ -77,24 +80,24 @@ class Blockchain:
             previous_hash = self.last_block.hash
 
         if not(proof.startswith("0" * self.difficulty)):
-            LOGGER.debug("Invalid block: proof difficulty '{}' is < {}"
+            LOGGER.debug("Invalid candidate: proof difficulty '{}' is < {}"
                          .format(proof, self.difficulty))
             return False
 
         if proof != block.compute_hash():
-            LOGGER.debug("Invalid block: proof hash '{}' != block hash '{}'"
+            LOGGER.debug("Invalid candidate: proof hash '{}' != hash '{}'"
                          .format(proof,
                                  block.compute_hash()))
             return False
 
         if block.height != self.len:
-            LOGGER.debug("Invalid block: block height #{} != #{}"
+            LOGGER.debug("Invalid candidate: block height #{} != #{}"
                          .format(block.height,
                                  self.len))
             return False
 
         if block.hash_previous_block != previous_hash:
-            LOGGER.debug("Invalid block: hash_previous_block '{}' != {}"
+            LOGGER.debug("Invalid candidate: hash_previous_block '{}' != {}"
                          .format(block.hash_previous_block,
                                  previous_hash))
             return False
